@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../services/api";
 import { fetchMenuItems } from "../../components/menu";
 
 export default {

@@ -146,7 +146,7 @@
 <script>
 import Layout from "@/layouts/main.vue";
 // import PageHeader from "@/components/page-header.vue";
-import axios from "axios";
+import axios from "../../../services/api";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 export default {

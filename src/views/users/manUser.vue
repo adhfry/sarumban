@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../services/api";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 export default {

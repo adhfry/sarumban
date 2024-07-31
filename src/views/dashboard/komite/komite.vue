@@ -111,7 +111,7 @@
 <script>
 import Layout from "../../../layouts/main.vue";
 import PageHeader from "../../../components/page-header.vue";
-import axios from "axios";
+import axios from "../../../services/api";
 import { BModal } from "bootstrap-vue-next";
 // import Loader from "../../../components/widgets/loader.vue";
 import inputCustom from "./input.vue";

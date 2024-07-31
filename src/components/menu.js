@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../services/api";
 import { ref } from "vue";
 
 const menuItems = ref([]);

@@ -1,7 +1,7 @@
 <script>
 import profileImg from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
-import axios from "axios";
+import axios from "../../services/api";
 
 /**
  * Register component

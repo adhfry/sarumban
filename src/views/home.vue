@@ -7,7 +7,7 @@ import Stat from "../components/widgets/stat.vue";
 // import Emailsent from "../components/widgets/emailsent.vue";
 // import TableQ from "../components/widgets/tableQ.vue";
 // import Buttons from "./ui/buttons.vue";
-import axios from "axios";
+// import this.$axios from "../services/api";
 /**
  * Dashboard Component
  */
@@ -124,7 +124,7 @@ export default {
         alert("Data Harus Diisi Semua");
         return;
       }
-      await axios
+      await this.$axios
         .post("/api/admin/dapo/sim", {
           ip: this.ip,
           npsn: this.npsn,
@@ -135,7 +135,7 @@ export default {
         });
     },
     async getDataToken() {
-      await axios.get("/api/admin/dapo/getDataToken").then((res) => {
+      await this.$axios.get("/api/admin/dapo/getDataToken").then((res) => {
         this.tokens = res.data;
         this.ip = "";
         this.npsn = "";
@@ -143,17 +143,17 @@ export default {
       });
     },
     async delToken(id) {
-      await axios.delete("/api/admin/dapo/delToken/" + id).then(() => {
+      await this.$axios.delete("/api/admin/dapo/delToken/" + id).then(() => {
         this.getDataToken();
       });
     },
     async singkron() {
-      await axios.get("/api/admin/dapo/getData").then(() => {
+      await this.$axios.get("/api/admin/dapo/getData").then(() => {
         alert("sukses");
       });
     },
     async getKelas() {
-      await axios.get("/api/admin/dapo/getDatas").then((res) => {
+      await this.$axios.get("/api/admin/dapo/getDatas").then((res) => {
         this.kelass = res.data.kelas;
         this.siswas = res.data.siswas;
         this.gurus = res.data.gurus;

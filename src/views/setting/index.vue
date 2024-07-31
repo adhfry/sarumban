@@ -69,7 +69,6 @@
 import Layout from "@/layouts/main.vue";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import axios from "axios";
 import AddMenu from "./addMenu.vue";
 import AddSubMenu from "./addSubMenu.vue";
 import { fetchMenuItems } from "../../components/menu";
@@ -95,7 +94,7 @@ export default {
   },
   methods: {
     async getMenus() {
-      await axios
+      await this.$axios
         .get("/api/admin/menus")
         .then((res) => {
           const data = res.data.data.filter(
@@ -112,13 +111,13 @@ export default {
         });
     },
     async getRoles() {
-      await axios.get("/api/admin/role").then((res) => {
+      await this.$axios.get("/api/admin/role").then((res) => {
         this.roles = res.data.data;
       });
     },
     async remSub(id) {
       if (confirm("anda yakin menghapus sub menu ?")) {
-        await axios.delete("/api/admin/menus/" + id).then(() => {
+        await this.$axios.delete("/api/admin/menus/" + id).then(() => {
           this.getMenus();
           this.$toast.success("Berhasil Menghapus Sub Menu");
           fetchMenuItems();
@@ -128,7 +127,7 @@ export default {
     async changeServer(page) {
       console.log(page);
       this.loading = true;
-      await axios
+      await this.$axios
         .get(
           "/api/admin/menus?page=" +
             page.current_page +

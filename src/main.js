@@ -24,6 +24,8 @@ import toast from './plugins/toast';
 // PINIA
 import pinia from '@/state/pinia'
 
+import axiosInstance from './services/api';
+
 // const firebaseConfig = {
 //   apiKey: process.env.VUE_APP_APIKEY,
 //   authDomain: process.env.VUE_APP_AUTHDOMAIN,
@@ -48,6 +50,7 @@ import '@vueform/slider/themes/default.css';
 const app = createApp(App);
 
 app.config.globalProperties.$toast = toast;
+app.config.globalProperties.$axios = axiosInstance;
 
 app.use(pinia)
   .use(router)

@@ -1,13 +1,13 @@
 <script>
-import axios from "axios";
+import axios from "../../services/api";
 
 import Layout from "../../layouts/auth";
 
 import { required, email, helpers } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 
-import { useAuthStore } from '@/state/pinia'
-const auth = useAuthStore()
+import { useAuthStore } from "@/state/pinia";
+const auth = useAuthStore();
 
 /**
  * Forgot Password component
@@ -49,7 +49,8 @@ export default {
           this.tryingToReset = true;
           // Reset the authError if it existed.
           this.error = null;
-          auth.resetPassword({ email: this.email })
+          auth
+            .resetPassword({ email: this.email })
             .then(() => {
               this.tryingToReset = false;
               this.isResetError = false;
@@ -58,7 +59,7 @@ export default {
               this.tryingToReset = false;
               this.error = error ? error : "";
               this.isResetError = true;
-            })
+            });
         } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
           axios
             .post("http://127.0.0.1:8000/api/password/create", {
@@ -90,7 +91,11 @@ export default {
                 </div>
               </BCol>
               <BCol cols="5" class="align-self-end">
-                <img src="@/assets/images/profile-img.png" alt class="img-fluid" />
+                <img
+                  src="@/assets/images/profile-img.png"
+                  alt
+                  class="img-fluid"
+                />
               </BCol>
             </BRow>
           </div>
@@ -106,13 +111,29 @@ export default {
             </div>
 
             <div class="p-2">
-              <BAlert v-model="isResetError" class="mb-4" variant="danger" dismissible>{{ error }}</BAlert>
+              <BAlert
+                v-model="isResetError"
+                class="mb-4"
+                variant="danger"
+                dismissible
+                >{{ error }}</BAlert
+              >
               <BForm @submit.prevent="tryToReset">
                 <div class="mb-3">
                   <label for="useremail">Email</label>
-                  <input type="email" v-model="email" class="form-control" id="useremail" placeholder="Enter email"
-                    :class="{ 'is-invalid': submitted && v$.email.$errors }" />
-                  <div v-for="(item, index) in v$.email.$errors" :key="index" class="invalid-feedback">
+                  <input
+                    type="email"
+                    v-model="email"
+                    class="form-control"
+                    id="useremail"
+                    placeholder="Enter email"
+                    :class="{ 'is-invalid': submitted && v$.email.$errors }"
+                  />
+                  <div
+                    v-for="(item, index) in v$.email.$errors"
+                    :key="index"
+                    class="invalid-feedback"
+                  >
                     <span v-if="item.$message">{{ item.$message }}</span>
                   </div>
                 </div>
@@ -131,7 +152,9 @@ export default {
         <div class="mt-5 text-center">
           <p>
             Remember It ?
-            <router-link to="/login" class="fw-medium text-primary">Sign In here</router-link>
+            <router-link to="/login" class="fw-medium text-primary"
+              >Sign In here</router-link
+            >
           </p>
           <p>
             © {{ new Date().getFullYear() }} Skote. Crafted with

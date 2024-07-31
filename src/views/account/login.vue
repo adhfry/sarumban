@@ -1,7 +1,7 @@
 <script>
 import profileImg from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
-import axios from "axios";
+// import this.$axios from "../../services/api";
 
 /**
  * Login component
@@ -28,7 +28,7 @@ export default {
   methods: {
     async login() {
       this.processing = true;
-      await axios
+      await this.$axios
         .post("/api/login", this.auth)
         .then(({ data }) => {
           if (data.success == true && data.message == "success") {

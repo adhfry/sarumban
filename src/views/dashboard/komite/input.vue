@@ -66,7 +66,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from "../../../services/api";
 import Multiselect from "vue-multiselect";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
